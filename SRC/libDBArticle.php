@@ -15,7 +15,7 @@ function fnSqlArticleList($flg, $sDel, $sArticle, $sRoom, $sKeyPlace, $sArticleN
 	$sql .= " FROM TBLARTICLE";
 	$sql .= " WHERE DEL = $sDel";
 	if ($sArticle) {
-		$sql .= " OR ARTICLE LIKE '%$sArticle$%'";
+		$sql .= " AND ARTICLE LIKE '%$sArticle%'";
 	}
 	if ($sRoom) {
 		$sql .= " OR ROOM LIKE '%$sRoom%'";
@@ -70,11 +70,12 @@ function fnSqlArticleUpdate($articleNo, $article, $room, $keyPlace, $address, $a
 	$sql .= " SET ARTICLE = '$article'";
 	$sql .= ",ROOM = '$room'";
 	$sql .= ",KEYPLACE = '$keyPlace'";
-	$sql .= ",ADDRESS = '$address'";
+	$sql .= ",ADDRESS = '$address";
 	$sql .= ",ARTICLENOTE = '$articleNote'";
 	$sql .= ",KEYBOX = '$keyBox'";
 	$sql .= ",DRAWING = '$drawing'";
 	$sql .= ",SELLCHARGE = '$sellCharge'";
+	$sql .= ",UPDT = CURRENT_TIMESTAMP";   //←追加
 	$sql .= ",DEL = '$del'";
 	$sql .= " WHERE ARTICLENO = $articleNo";
 
